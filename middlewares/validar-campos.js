@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const Usuario = require('../models/usuario');
 
 const validarCampos = (req,res, next) => {
     const errors = validationResult(req);
@@ -10,6 +11,16 @@ const validarCampos = (req,res, next) => {
     next();
 }
 
+const exiteUsuarioId = async(id)=>{
+
+    const existeUsuario = await Usuario.findById(id); 
+    if(!existeUsuario){
+        throw new Error(`El id no existe ${id}`)
+    }
+}
+
+
 module.exports = {
-    validarCampos
+    validarCampos, 
+    exiteUsuarioId
 }
