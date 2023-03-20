@@ -20,6 +20,8 @@ const emailExiste = async (correo = '') => {
 }
 
 
+
+
 module.exports = {
     esRoleValido,
     emailExiste
