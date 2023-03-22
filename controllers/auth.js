@@ -5,7 +5,7 @@ const { generarJWT } = require('../helpers/generar-jwt');
 
 
 
-const login =async(req, res = response) => {
+const login = async (req, res = response) => {
 
     const { correo, password } = req.body;
 
@@ -39,14 +39,13 @@ const login =async(req, res = response) => {
         const token = await generarJWT(usuario.id);
 
         res.json({
-            usuario, 
+            usuario,
             token
         })
 
     } catch (error) {
 
         console.log(error);
-
         res.status(500).json({
             msg: 'Hable con el administrador'
         })
