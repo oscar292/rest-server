@@ -6,7 +6,7 @@ const { usuariosGet,
     usuariosPost,
     usuariosDelete,
     usuariosPatch } = require('../controllers/usuarios');
-const { esRoleValido, emailExiste } = require('../helpers/db-validators');
+const { esRoleValido, emailExiste, existeUsuarioId } = require('../helpers/db-validators');
 
 
 
@@ -38,7 +38,7 @@ router.post('/', [
 
 router.put('/:id', [
     check('id', 'No es un id valido').isMongoId(),
-    check('id').custom(exiteUsuarioId),
+    check('id').custom(existeUsuarioId),
     validarCampos], usuariosPut);
 
 router.delete('/:id', [
