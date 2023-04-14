@@ -40,8 +40,6 @@ const existeCategoriaPorId = async (id) => {
 
 
 const existeProductoPorId = async (id) => {
-
-
     const existeProducto = await Producto.findById(id);
 
     if (!existeProducto) {
@@ -58,5 +56,4 @@ module.exports = {
     existeCategoriaPorId,
     existeUsuarioId,
     existeProductoPorId
-
 }

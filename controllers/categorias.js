@@ -71,11 +71,6 @@ const borrarCategoria = async (req, res = response) => {
 
 }
 
-
-
-
-
-
 module.exports = {
     crearCategoria,
     obtenerCategorias,

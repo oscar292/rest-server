@@ -12,7 +12,6 @@ const login = async (req, res = response) => {
 
     try {
 
-
         const usuario = await Usuario.findOne({ correo });
 
         if (!usuario) {

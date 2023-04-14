@@ -1,9 +1,5 @@
 const { response } = require('express');
 const { Producto } = require('../models');
-const categoria = require('../models/categoria');
-const usuario = require('../models/usuario');
-
-
 
 const crearProducto = async (req, res = response) => {
 
@@ -61,7 +57,10 @@ const actualizarProducto = async (req, res = response) => {
     const { id } = req.params;
     const { estado, usuario, ...data } = req.body;
 
-    data.nombre.toUpperCase();
+    if (data.nombre) {
+        data.nombre = data.nombre.toUpperCase();
+    }
+
     data.usuario = req.usuario._id;
 
     const producto = await Producto.findByIdAndUpdate(id, data, { new: true });
@@ -70,11 +69,21 @@ const actualizarProducto = async (req, res = response) => {
 }
 
 
+const borrarProducto = async (req, res = response) => {
+
+    const { id } = req.params;
+    const productoBorrado = await Producto.findByIdAndUpdate(id, { estado: false }, { new: true })
+    res.json(productoBorrado);
+}
+
+
+
 
 
 module.exports = {
     crearProducto,
     obtenerProductos,
     obtenerProducto,
-    actualizarProducto
+    actualizarProducto,
+    borrarProducto
 }
